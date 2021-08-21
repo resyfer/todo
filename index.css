@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family: 'Poppins', sans-serif;
 }
 
 html,
@@ -58,6 +59,7 @@ div#todo-ctnr {
 	border: 0.2vh solid var(--theme1-100);
 }
 
+/* *Form */
 form {
 	display: flex;
 	flex-direction: column;
@@ -86,13 +88,7 @@ form {
 	border: 0.5vh solid var(--theme1-100);
 }
 
-div.btn-ctnr {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	margin: 1vh 0 2vh 0;
-}
-
+/* *Items */
 div.todo-itm {
 	color: var(--theme2-100);
 	width: 95%;
@@ -122,6 +118,14 @@ div.todo-itm .todo-itm-del:hover {
 	background-color: var(--theme1-100);
 	color: var(--theme2-100);
 	transition: 0.2s ease-in-out;
+}
+
+/* *Button */
+div.btn-ctnr {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin: 1vh 0 2vh 0;
 }
 
 .btn {

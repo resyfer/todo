@@ -160,7 +160,7 @@ window.addEventListener('keydown', e => {
 });
 
 /**
- * First Time Message
+ * *First Time Message
  */
 if (Number(localStorage.getItem('visit')) == 1) {
 	document.getElementById('first-time').style.display = 'flex';
