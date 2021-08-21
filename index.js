@@ -12,8 +12,11 @@ let todoItemCount = 0;
  * *Check if localStorage is empty or not.
  * *If empty, set a default empty array value.
  */
-if (!localStorage.getItem('todo'))
+if (!localStorage.getItem('todo')) {
 	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
+	localStorage.setItem('visit', 0);
+}
+localStorage.setItem('visit', Number(localStorage.getItem('visit')) + 1);
 
 /**
  * *Get list of todos from localStorage
@@ -57,6 +60,7 @@ clearTextBtn.addEventListener('click', e => {
 deleteAllBtn.addEventListener('click', e => {
 	e.preventDefault();
 	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
+	localStorage.setItem('revisit', Number(localStorage.getItem('visit')) - 1); //* To nullify the extra revisit on reload
 	location.reload();
 });
 
