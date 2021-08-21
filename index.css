@@ -142,3 +142,35 @@ div.todo-itm .todo-itm-del:hover {
 	background-color: var(--theme1-100);
 	transition: 0.2s ease-in-out;
 }
+
+/* *First Time  */
+div#first-time {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: +5;
+	height: 90%;
+	width: 90%;
+	background-color: var(--theme2-100);
+	color: var(--theme1-100);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 2vh;
+}
+
+div#first-time div.instructions {
+	font-size: 2.5vh;
+	padding: 0 3vh;
+	box-sizing: border-box;
+}
+
+div#first-time div.close {
+	position: absolute;
+	top: 1%;
+	right: 1%;
+	font-size: 3vh;
+	cursor: pointer;
+}

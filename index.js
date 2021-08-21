@@ -60,7 +60,7 @@ clearTextBtn.addEventListener('click', e => {
 deleteAllBtn.addEventListener('click', e => {
 	e.preventDefault();
 	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
-	localStorage.setItem('revisit', Number(localStorage.getItem('visit')) - 1); //* To nullify the extra revisit on reload
+	localStorage.setItem('visit', Number(localStorage.getItem('visit')) - 1); //* To nullify the extra revisit on reload
 	location.reload();
 });
 
