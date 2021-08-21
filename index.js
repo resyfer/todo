@@ -30,13 +30,17 @@ submitBtn.addEventListener('click', e => {
 	todoArea.value = '';
 
 	addDeleteListeners();
+
+	todoContainer.scrollTo(0, todoContainer.scrollHeight);
 });
 
-clearTextBtn.addEventListener('click', () => {
+clearTextBtn.addEventListener('click', e => {
+	e.preventDefault();
 	todoArea.value = '';
 });
 
-deleteAllBtn.addEventListener('click', () => {
+deleteAllBtn.addEventListener('click', e => {
+	e.preventDefault();
 	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
 	location.reload();
 });
@@ -58,16 +62,10 @@ function addDeleteListeners() {
 	todoItems = document.getElementsByClassName('todo-itm');
 	todoDeleteBtns = document.getElementsByClassName('todo-itm-del');
 
-	// removeDeleteListeners();
+	removeDeleteListeners('click');
 
 	for (let i = 0; i < todoDeleteBtns.length; i++) {
-		// todoDeleteBtns[i].addEventListener(
-		// 	'click',
-		// 	e => {
-		// 		deleteTodo(e, i);
-		// 	},
-		// 	false
-		// );
+		todoDeleteBtns[i].addEventListener('click', deleteTodo);
 	}
 }
 
@@ -77,11 +75,13 @@ function removeDeleteListeners() {
 	}
 }
 
-function deleteTodo(e, i) {
-	todoList.splice(i, 1);
-	e.target.parentElement.remove();
-	localStorage.setItem('todo', JSON.stringify({ todos: todoList }));
+function deleteTodo(e) {
+	// todoList.splice(i, 1);
+	// e.target.parentElement.remove();
+	// localStorage.setItem('todo', JSON.stringify({ todos: todoList }));
 	// addDeleteListeners();
+
+	console.log(e);
 }
 
 function makeTodoElement({ container, element, value }) {

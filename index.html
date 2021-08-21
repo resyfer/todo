@@ -13,21 +13,21 @@
 </head>
 
 <body>
-  <div class="background">
-    <div class="background-img">
+  <div class="todo">
+    <div class="todo-entry">
+      <form>
+        <label for="todo">
+          <textarea name="todo" placeholder="Add a todo here..." id="todo-input"></textarea>
+        </label>
+        <div class="btn-ctnr">
+          <button id="delete-all" class="btn">Delete All</button>
+          <button id="clear-text" class="btn">Clear Text</button>
+          <button id="submit" class="btn" type="submit">Add</button>
+        </div>
+      </form>
     </div>
-  </div>
-  <button id="delete-all">Delete All</button>
-  <div class="todo-entry">
-    <form>
-      <label for="todo">
-        <textarea name="todo" id="todo-input" required minlength="10"></textarea>
-      </label>
-      <button id="submit" type="submit">Add</button>
-    </form>
-    <button id="clear-text">Clear Text</button>
-  </div>
-  <div id="todo-ctnr">
+    <div id="todo-ctnr">
+    </div>
   </div>
 </body>
 

@@ -1,0 +1,143 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	scroll-behavior: smooth;
+}
+
+/**Scrollbar**/
+::-webkit-scrollbar {
+	width: 0.75vh;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--theme2-100);
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 3vh;
+	background: var(--theme1-100);
+}
+
+:root {
+	/*? Heights */
+	--navbar-height-pc: 7vh;
+	--footer-height-pc: 7vh;
+
+	/*? Themes */
+	--theme1-100: #ff3232;
+	--theme1-050: rgba(255, 50, 50, 0.5);
+	--theme2-100: #2c2f33;
+	--theme3-100: #f8f8f8;
+	--theme4-100: #5c5c5c;
+}
+
+body {
+	background-color: var(--theme2-100);
+}
+
+div.todo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+}
+
+div#todo-ctnr {
+	min-height: 70vh;
+	max-height: 70vh;
+	overflow-y: scroll;
+	background-color: var(--theme4-100);
+	border-radius: 1vh;
+
+	box-sizing: border-box;
+	border: 0.2vh solid var(--theme1-100);
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+#todo-input {
+	resize: none;
+	outline: none;
+	width: 100%;
+	height: 9vh;
+	font-size: 3vh;
+	border: 0.5vh solid var(--theme1-050);
+	border-radius: 1vh;
+	background-color: var(--theme2-100);
+	color: var(--theme1-100);
+	padding: 1vh;
+	box-sizing: border-box;
+}
+
+#todo-input::placeholder {
+	color: var(--theme1-050);
+}
+
+#todo-input:hover,
+#todo-input:focus {
+	border: 0.5vh solid var(--theme1-100);
+}
+
+div.btn-ctnr {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin: 1vh 0 2vh 0;
+}
+
+div.todo-itm {
+	color: var(--theme2-100);
+	width: 95%;
+	margin: 1vh auto;
+	padding: 5vh;
+	box-sizing: border-box;
+	border-radius: 1vh;
+	background-color: var(--theme2-100);
+	color: var(--theme1-100);
+	border: 0.2vh solid var(--theme1-100);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	text-align: justify;
+}
+
+div.todo-itm .todo-itm-del {
+	margin-left: 3.5vh;
+	cursor: pointer;
+	padding: 1.5vh;
+	border-radius: 1vh;
+}
+
+div.todo-itm .todo-itm-del:hover {
+	background-color: var(--theme1-100);
+	color: var(--theme2-100);
+	transition: 0.2s ease-in-out;
+}
+
+.btn {
+	padding: 1vh 2vh;
+	border-radius: 1vh;
+	background-color: var(--theme2-100);
+	outline: none;
+	border: 0.2vh solid var(--theme1-100);
+	color: var(--theme1-100);
+	box-sizing: border-box;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.btn:hover {
+	color: var(--theme2-100);
+	background-color: var(--theme1-100);
+	transition: 0.2s ease-in-out;
+}
