@@ -125,19 +125,18 @@ function addChangeOptions({ element }) {
 
 /* Quality of Life features */
 
-/*
- * Add focus to Todo Area on window load
+/**
+ * *Add focus to Todo Area on window load
  */
 window.onload = () => {
 	todoArea.focus();
 };
 
-/*
- * Enter to add Todo
- * Shift + Enter for new line
+/**
+ * *Ctrl + Enter to add Todo while focus on Todo Area
  */
 window.addEventListener('keydown', e => {
-	if (document.activeElement === todoArea && e.code === 'Enter') {
+	if (document.activeElement === todoArea && e.code === 'Enter' && e.ctrlKey) {
 		e.preventDefault();
 		submitBtn.click();
 	}
