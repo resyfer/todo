@@ -6,6 +6,8 @@ const todoContainer = document.getElementById('todo-ctnr');
 let todoItems;
 let todoDeleteBtns;
 
+let todoItemCount = 0;
+
 if (!localStorage.getItem('todo'))
 	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
 
@@ -35,6 +37,12 @@ clearTextBtn.addEventListener('click', e => {
 	todoArea.value = '';
 });
 
+deleteAllBtn.addEventListener('click', e => {
+	e.preventDefault();
+	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
+	location.reload();
+});
+
 function addTodo(todoValue) {
 	let todoNew = document.createElement('div');
 
@@ -45,7 +53,10 @@ function addTodo(todoValue) {
 	});
 
 	todoList.push(todoValue.toString());
-	localStorage.setItem('todo', JSON.stringify({ todos: todoList }));
+	localStorage.setItem(
+		'todo',
+		JSON.stringify({ todos: todoList.filter(todo => todo) })
+	);
 }
 
 function makeTodoElement({ container, element, value }) {
@@ -59,5 +70,16 @@ function makeTodoElement({ container, element, value }) {
 function addChangeOptions({ element }) {
 	let deleteBtn = document.createElement('i');
 	deleteBtn.setAttribute('class', 'fas fa-trash todo-itm-del');
+	deleteBtn.setAttribute('id', `del-${todoItemCount++}`);
+
+	deleteBtn.addEventListener('click', e => {
+		e.target.parentElement.remove();
+		todoList[Number(e.target.id.split('-')[1])] = null;
+		localStorage.setItem(
+			'todo',
+			JSON.stringify({ todos: todoList.filter(todo => todo) })
+		);
+	});
+
 	element.appendChild(deleteBtn);
 }
