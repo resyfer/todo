@@ -16,6 +16,7 @@ if (!localStorage.getItem('todo')) {
 	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
 	localStorage.setItem('visit', 0);
 }
+//* Increment visits
 localStorage.setItem('visit', Number(localStorage.getItem('visit')) + 1);
 
 /**
@@ -38,6 +39,18 @@ let { todos: todoList } = JSON.parse(localStorage.getItem('todo'));
 		});
 	}
 })();
+
+/**
+ * *Listener for closing parent element on clicking X
+ */
+let crossList = document.getElementsByClassName('fa-times');
+for (let i = 0; i < crossList.length; i++) {
+	crossList[i].addEventListener('click', e => {
+		e.target.parentElement.style.display = 'none';
+
+		if (i == 0) todoArea.focus(); //* Adds focus on todo area if closing first time msg
+	});
+}
 
 //* Add TODO
 submitBtn.addEventListener('click', e => {
@@ -145,3 +158,10 @@ window.addEventListener('keydown', e => {
 		submitBtn.click();
 	}
 });
+
+/**
+ * First Time Message
+ */
+if (Number(localStorage.getItem('visit')) == 1) {
+	document.getElementById('first-time').style.display = 'flex';
+}

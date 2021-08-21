@@ -154,11 +154,11 @@ div#first-time {
 	width: 90%;
 	background-color: var(--theme2-100);
 	color: var(--theme1-100);
-	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	border-radius: 2vh;
+	display: none;
 }
 
 div#first-time div.instructions {
@@ -167,7 +167,7 @@ div#first-time div.instructions {
 	box-sizing: border-box;
 }
 
-div#first-time div.close {
+div#first-time .close {
 	position: absolute;
 	top: 1%;
 	right: 1%;
