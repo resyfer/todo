@@ -22,14 +22,10 @@ let { todos: todoList } = JSON.parse(localStorage.getItem('todo'));
 	}
 })();
 
-addDeleteListeners();
-
 submitBtn.addEventListener('click', e => {
 	e.preventDefault();
 	if (todoArea.value) addTodo(todoArea.value);
 	todoArea.value = '';
-
-	addDeleteListeners();
 
 	todoContainer.scrollTo(0, todoContainer.scrollHeight);
 });
@@ -37,12 +33,6 @@ submitBtn.addEventListener('click', e => {
 clearTextBtn.addEventListener('click', e => {
 	e.preventDefault();
 	todoArea.value = '';
-});
-
-deleteAllBtn.addEventListener('click', e => {
-	e.preventDefault();
-	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
-	location.reload();
 });
 
 function addTodo(todoValue) {
@@ -56,32 +46,6 @@ function addTodo(todoValue) {
 
 	todoList.push(todoValue.toString());
 	localStorage.setItem('todo', JSON.stringify({ todos: todoList }));
-}
-
-function addDeleteListeners() {
-	todoItems = document.getElementsByClassName('todo-itm');
-	todoDeleteBtns = document.getElementsByClassName('todo-itm-del');
-
-	removeDeleteListeners('click');
-
-	for (let i = 0; i < todoDeleteBtns.length; i++) {
-		todoDeleteBtns[i].addEventListener('click', deleteTodo);
-	}
-}
-
-function removeDeleteListeners() {
-	for (let i = 0; i < todoDeleteBtns.length; i++) {
-		todoDeleteBtns[i].removeEventListener('click', deleteTodo);
-	}
-}
-
-function deleteTodo(e) {
-	// todoList.splice(i, 1);
-	// e.target.parentElement.remove();
-	// localStorage.setItem('todo', JSON.stringify({ todos: todoList }));
-	// addDeleteListeners();
-
-	console.log(e);
 }
 
 function makeTodoElement({ container, element, value }) {
