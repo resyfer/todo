@@ -108,6 +108,7 @@ div.todo-itm {
 	align-items: center;
 	justify-content: space-between;
 	text-align: justify;
+	word-break: break-all;
 }
 
 div.todo-itm .todo-itm-del {
