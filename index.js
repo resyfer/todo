@@ -14,6 +14,12 @@ let todoItemCount = 0;
  */
 if (!localStorage.getItem('todo')) {
 	localStorage.setItem('todo', JSON.stringify({ todos: [] }));
+	/**
+	 * todo = {
+	 * 		value
+	 * 		checked
+	 * }
+	 */
 	localStorage.setItem('visit', 0);
 }
 //* Increment visits
@@ -35,13 +41,14 @@ let { todos: todoList } = JSON.parse(localStorage.getItem('todo'));
 		makeTodoElement({
 			container: todoContainer,
 			element: todoElement,
-			value: todoList[i],
+			value: todoList[i].value,
 		});
 	}
 })();
 
+/* First Time Message */
 /**
- * *Listener for closing parent element on clicking X
+ * *Listener for closing parent element on clicking X for first time messgae
  */
 let crossList = document.getElementsByClassName('fa-times');
 for (let i = 0; i < crossList.length; i++) {
@@ -87,7 +94,10 @@ function addTodo(todoValue) {
 		value: todoValue,
 	});
 
-	todoList.push(todoValue.toString());
+	todoList.push({
+		value: todoValue.toString(),
+		checked: false,
+	});
 	localStorage.setItem(
 		'todo',
 		JSON.stringify({ todos: todoList.filter(todo => todo) })
@@ -101,27 +111,43 @@ function addTodo(todoValue) {
  * @params container : Parent Element
  * @params element : new element from createElement
  * @params value : innerText value
+ * @params checked : boolean value for checked or not
  */
-function makeTodoElement({ container, element, value }) {
+function makeTodoElement({ container, element, value, checked = false }) {
 	element.setAttribute('class', 'todo-itm');
+	element.setAttribute('id', `todo-itm-${todoItemCount}`);
 
 	/* Check Btn */
 	let checkBtn = document.createElement('input');
 	checkBtn.setAttribute('type', 'checkbox');
 	checkBtn.setAttribute('class', 'check');
-	element.appendChild(checkBtn);
+	checkBtn.checked = checked;
 
 	/* Text */
 	let todoText = document.createElement('div');
 	todoText.setAttribute('class', 'todo-text');
 	todoText.innerText = value;
-	element.appendChild(todoText);
+
+	/* Check Btn Event Listener */
+	checkBtn.addEventListener('click', e => {
+		todoList[Number(e.target.parentElement.id.split('-')[2])].checked =
+			e.target.checked;
+		if (e.target.checked) {
+			todoText.style.textDecoration = 'line-through';
+		} else {
+			todoText.style.textDecoration = 'none';
+		}
+		localStorage.setItem(
+			'todo',
+			JSON.stringify({ todos: todoList.filter(todo => todo) })
+		);
+	});
 
 	/* Delete Btn */
 	//* Delete Btn Addition
 	let deleteBtn = document.createElement('i');
 	deleteBtn.setAttribute('class', 'fas fa-trash todo-itm-del');
-	deleteBtn.setAttribute('id', `del-${todoItemCount++}`);
+	deleteBtn.setAttribute('id', `del-${todoItemCount}`);
 
 	//* Delete Event Listener
 	deleteBtn.addEventListener('click', e => {
@@ -140,9 +166,14 @@ function makeTodoElement({ container, element, value }) {
 		 * *New ids and todoList values are assigned from localStorage for new session
 		 */
 	});
+
+	element.appendChild(checkBtn);
+	element.appendChild(todoText);
 	element.appendChild(deleteBtn);
 
 	container.appendChild(element);
+
+	todoItemCount++;
 }
 
 /* Quality of Life features */
