@@ -104,16 +104,20 @@ function addTodo(todoValue) {
  */
 function makeTodoElement({ container, element, value }) {
 	element.setAttribute('class', 'todo-itm');
-	element.innerText = value;
-	container.appendChild(element);
 
-	addChangeOptions({ element });
-	/**
-	 * *Adds todo update options
-	 */
-}
+	/* Check Btn */
+	let checkBtn = document.createElement('input');
+	checkBtn.setAttribute('type', 'checkbox');
+	checkBtn.setAttribute('class', 'check');
+	element.appendChild(checkBtn);
 
-function addChangeOptions({ element }) {
+	/* Text */
+	let todoText = document.createElement('div');
+	todoText.setAttribute('class', 'todo-text');
+	todoText.innerText = value;
+	element.appendChild(todoText);
+
+	/* Delete Btn */
 	//* Delete Btn Addition
 	let deleteBtn = document.createElement('i');
 	deleteBtn.setAttribute('class', 'fas fa-trash todo-itm-del');
@@ -136,8 +140,9 @@ function addChangeOptions({ element }) {
 		 * *New ids and todoList values are assigned from localStorage for new session
 		 */
 	});
-
 	element.appendChild(deleteBtn);
+
+	container.appendChild(element);
 }
 
 /* Quality of Life features */
