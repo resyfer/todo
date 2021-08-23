@@ -120,7 +120,6 @@ function makeTodoElement({ container, element, value, checked = false }) {
 
 	/* Check Btn */
 	let checkBtn = document.createElement('label');
-	// checkBtn.setAttribute('type', 'checkbox');
 
 	let checkBox = document.createElement('input');
 	checkBox.setAttribute('type', 'checkbox');
