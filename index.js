@@ -42,6 +42,7 @@ let { todos: todoList } = JSON.parse(localStorage.getItem('todo'));
 			container: todoContainer,
 			element: todoElement,
 			value: todoList[i].value,
+			checked: todoList[i].checked,
 		});
 	}
 })();
@@ -124,6 +125,7 @@ function makeTodoElement({ container, element, value, checked = false }) {
 	let checkBox = document.createElement('input');
 	checkBox.setAttribute('type', 'checkbox');
 	checkBox.setAttribute('class', 'checkbox');
+	checkBox.checked = checked;
 	checkBtn.appendChild(checkBox);
 
 	let checkSpan = document.createElement('span');
@@ -131,12 +133,19 @@ function makeTodoElement({ container, element, value, checked = false }) {
 	checkBtn.appendChild(checkSpan);
 
 	checkBtn.setAttribute('class', 'check-ctnr');
-	checkBtn.checked = checked;
 
 	/* Text */
 	let todoText = document.createElement('div');
 	todoText.setAttribute('class', 'todo-text');
 	todoText.innerText = value;
+	/* Initial Load */
+	if (checked) {
+		todoText.style.textDecoration = 'line-through double';
+		todoText.style.color = 'var(--theme1-050)';
+	} else {
+		todoText.style.textDecoration = 'none';
+		todoText.style.color = 'var(--theme1-100)';
+	}
 
 	/* Check Btn Event Listener */
 	checkBtn.addEventListener('click', e => {
